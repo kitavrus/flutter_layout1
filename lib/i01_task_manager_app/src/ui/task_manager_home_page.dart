@@ -48,6 +48,59 @@ class TaskManagerHomePage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Welcome Back!',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            SizedBox(height: 12),
+                            Text(
+                              'Here\'s Update Today',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                        // Spacer(),
+                        const CircleAvatar(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                          child: Icon(Coolicons.search),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 48,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: 7,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Container(
+                              height: 180,
+                              decoration: const BoxDecoration(
+                                color: Colors.yellow,
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
                 ],
               ),
             ),
@@ -75,6 +128,16 @@ class TaskManagerHomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          print(' Floating ACTION button');
+        },
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        label: const Text('Add Task'),
+        icon: const Icon(Icons.add_box),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
