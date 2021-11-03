@@ -1,6 +1,10 @@
 import 'package:coolicons/coolicons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_layout1/i01_task_manager_app/src/controller/tab_controller.dart';
 import 'package:flutter_layout1/i01_task_manager_app/src/data/fake_tasks.dart';
+import 'package:flutter_layout1/i01_task_manager_app/src/ui/task_add_page.dart';
+import 'package:flutter_layout1/i01_task_manager_app/src/ui/task_edit_page.dart';
+import 'package:get/get.dart';
 
 class TaskManagerHomePage extends StatefulWidget {
   const TaskManagerHomePage({Key? key}) : super(key: key);
@@ -11,6 +15,8 @@ class TaskManagerHomePage extends StatefulWidget {
 
 class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
   int _tabIndex = 0;
+
+  final taskTabController = Get.put(TaskTabController());
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +100,7 @@ class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
                       children: [
                         GestureDetector(
                           onTap: () {
+                            taskTabController.setTabIndex(0);
                             setState(() {
                               _tabIndex = 0;
                             });
@@ -127,6 +134,7 @@ class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            taskTabController.setTabIndex(1);
                             setState(() {
                               _tabIndex = 1;
                             });
@@ -159,6 +167,7 @@ class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            taskTabController.setTabIndex(2);
                             setState(() {
                               _tabIndex = 2;
                             });
@@ -212,177 +221,184 @@ class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
                     height: 8,
                   ),
                   Expanded(
-                    child: IndexedStack(
-                      index: _tabIndex,
-                      children: [
-                        ListView.builder(
-                            itemCount: fakeTodayTask.length,
-                            itemBuilder: (context, index) {
-                              final backgroundColorRGB =
-                                  fakeTodayTask[index].backgroundColorRGB ??
-                                      Colors.yellow;
-                              final title = fakeTodayTask[index].title ?? "";
-                              final date = fakeTodayTask[index].date ?? "";
-                              final time = fakeTodayTask[index].time ?? "";
-                              final remindAt =
-                                  fakeTodayTask[index].remindAt ?? "";
-                              final timeAndRemindAt = remindAt != ''
-                                  ? time + " (Remind At $remindAt)"
-                                  : time;
+                    child: GetBuilder<TaskTabController>(
+                      builder: (controller) {
+                        return IndexedStack(
+                          index: controller.tabIndex,
+                          // index: _tabIndex,
+                          children: [
+                            ListView.builder(
+                                itemCount: fakeTodayTask.length,
+                                itemBuilder: (context, index) {
+                                  final backgroundColorRGB =
+                                      fakeTodayTask[index].backgroundColorRGB ??
+                                          Colors.yellow;
+                                  final title =
+                                      fakeTodayTask[index].title ?? "";
+                                  final date = fakeTodayTask[index].date ?? "";
+                                  final time = fakeTodayTask[index].time ?? "";
+                                  final remindAt =
+                                      fakeTodayTask[index].remindAt ?? "";
+                                  final timeAndRemindAt = remindAt != ''
+                                      ? time + " (Remind At $remindAt)"
+                                      : time;
 
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Container(
-                                  // height: 180,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: backgroundColorRGB,
-                                    // color: Colors.yellow,
-                                  ),
-                                  padding: const EdgeInsets.all(16),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 28,
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: ListView.builder(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                itemCount: fakeTodayTask[index]
-                                                    .tags
-                                                    ?.length,
-                                                itemBuilder: (context, index2) {
-                                                  final _tag =
-                                                      fakeTodayTask[index]
-                                                              .tags?[index2] ??
-                                                          "";
-                                                  return GestureDetector(
-                                                    onTap: () {
-                                                      // setState(() {
-                                                      //   fakeTodayTask[index]
-                                                      //           .isCompleted =
-                                                      //       !(fakeTodayTask[index]
-                                                      //               .isCompleted ??
-                                                      //           false);
-                                                      // });
-                                                      print('GestureDetector');
-                                                    },
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 8.0),
-                                                      child: Container(
-                                                        // margin: const EdgeInsets.only(
-                                                        //     right: 8),
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0),
+                                    child: Container(
+                                      // height: 180,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: backgroundColorRGB,
+                                        // color: Colors.yellow,
+                                      ),
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 28,
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount:
+                                                        fakeTodayTask[index]
+                                                            .tags
+                                                            ?.length,
+                                                    itemBuilder:
+                                                        (context, index2) {
+                                                      final _tag =
+                                                          fakeTodayTask[index]
+                                                                      .tags?[
+                                                                  index2] ??
+                                                              "";
+                                                      return Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .symmetric(
-                                                                horizontal: 12),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            24),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Colors
-                                                                      .black45,
-                                                                )),
-                                                        child: Center(
-                                                          child: Text(_tag),
+                                                                    .only(
+                                                                right: 8.0),
+                                                        child: Container(
+                                                          // margin: const EdgeInsets.only(
+                                                          //     right: 8),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      12),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              24),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Colors
+                                                                        .black45,
+                                                                  )),
+                                                          child: Center(
+                                                            child: Text(_tag),
+                                                          ),
                                                         ),
-                                                      ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Get.to(
+                                                        const TaskEditPage());
+                                                  },
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(3),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.black,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4)),
+                                                    child: Icon(
+                                                      Icons.edit,
+                                                      color: backgroundColorRGB,
+                                                      size: 14,
                                                     ),
-                                                  );
-                                                },
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: Text(
+                                              title,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
                                               ),
                                             ),
-                                            Container(
-                                              padding: const EdgeInsets.all(3),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.black,
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Icon(
-                                                Icons.edit,
-                                                color: backgroundColorRGB,
-                                                size: 14,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0),
-                                        child: Text(
-                                          title,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
                                           ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        children: [
-                                          const Icon(Coolicons.calendar),
                                           const SizedBox(
-                                            width: 5,
+                                            height: 20,
                                           ),
-                                          Text(
-                                            date,
+                                          Row(
+                                            children: [
+                                              const Icon(Coolicons.calendar),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                date,
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Row(
+                                            children: [
+                                              const Icon(Coolicons.clock),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(timeAndRemindAt),
+                                              const Spacer(),
+                                              Container(
+                                                height: 25,
+                                                width: 25,
+                                                decoration: BoxDecoration(
+                                                  // borderRadius:
+                                                  //     BorderRadius.circular(13),
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: Colors.black,
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              // Expanded(child: CircleAvatar())
+                                            ],
                                           )
                                         ],
                                       ),
-                                      const SizedBox(height: 10),
-                                      Row(
-                                        children: [
-                                          const Icon(Coolicons.clock),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(timeAndRemindAt),
-                                          const Spacer(),
-                                          Container(
-                                            height: 25,
-                                            width: 25,
-                                            decoration: BoxDecoration(
-                                              // borderRadius:
-                                              //     BorderRadius.circular(13),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                color: Colors.black,
-                                                width: 2,
-                                              ),
-                                            ),
-                                          ),
-                                          // Expanded(child: CircleAvatar())
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                        const Center(
-                          child: Text("Upcoming"),
-                        ),
-                        const Center(
-                          child: Text("Task done"),
-                        ),
-                      ],
+                                    ),
+                                  );
+                                }),
+                            const Center(
+                              child: Text("Upcoming"),
+                            ),
+                            const Center(
+                              child: Text("Task done"),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -414,6 +430,7 @@ class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          Get.to(const TaskAddPage());
           print(' Floating ACTION button');
         },
         backgroundColor: Colors.black,
