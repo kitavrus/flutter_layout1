@@ -8,7 +8,7 @@ List<TaskModel> fakeTodayTask = [
     date: "12 October 2021",
     isCompleted: false,
     tags: ["School", "Everyday"],
-    remindAt: "07:15",
+    remindAt: "",
     backgroundColorRGB: const Color(0xff4beed1),
   ),
   TaskModel(

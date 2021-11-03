@@ -1,8 +1,16 @@
 import 'package:coolicons/coolicons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_layout1/i01_task_manager_app/src/data/fake_tasks.dart';
 
-class TaskManagerHomePage extends StatelessWidget {
+class TaskManagerHomePage extends StatefulWidget {
   const TaskManagerHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<TaskManagerHomePage> createState() => _TaskManagerHomePageState();
+}
+
+class _TaskManagerHomePageState extends State<TaskManagerHomePage> {
+  int _tabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -79,25 +87,35 @@ class TaskManagerHomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 43,
-                    color: Colors.blue,
+                  SizedBox(
+                    height: 36,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Center(
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _tabIndex = 0;
+                            });
+                          },
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(24),
+                              // color: Colors.black,
+                              color: _tabIndex == 0
+                                  ? Colors.black
+                                  : Colors.transparent,
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24.0, vertical: 8),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 36.0),
+                            child: Center(
                               child: Text(
                                 'Today',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: _tabIndex == 0
+                                      ? Colors.white
+                                      : Colors.black,
+                                  // color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -105,46 +123,88 @@ class TaskManagerHomePage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          width: 20,
+                          width: 16,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            color: Colors.black,
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                          child: Center(
-                            child: Text(
-                              'Today',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Center(
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _tabIndex = 1;
+                            });
+                          },
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(24),
+                              color: _tabIndex == 1
+                                  ? Colors.black
+                                  : Colors.transparent,
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24.0, vertical: 8),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 36.0),
+                            child: Center(
                               child: Text(
-                                'Today',
+                                'Upcoming',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: _tabIndex == 1
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                           ),
                         ),
+
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _tabIndex = 2;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24),
+                              color: _tabIndex == 2
+                                  ? Colors.black
+                                  : Colors.transparent,
+                            ),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 36.0),
+                            child: Center(
+                              child: Text(
+                                'Task Done',
+                                style: TextStyle(
+                                  color: _tabIndex == 2
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // TODO Не пойму почему тут высота 36  SizeBox и ConstrainedBox не работает ?
+                        // Center(
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(16),
+                        //       // color: Colors.black,
+                        //     ),
+                        //     child: const Padding(
+                        //       padding: EdgeInsets.symmetric(
+                        //           horizontal: 32.0, vertical: 8),
+                        //       child: Text(
+                        //         'Task Done',
+                        //         style: TextStyle(
+                        //           color: Colors.black,
+                        //           fontWeight: FontWeight.bold,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -152,19 +212,178 @@ class TaskManagerHomePage extends StatelessWidget {
                     height: 8,
                   ),
                   Expanded(
-                    child: ListView.builder(
-                        itemCount: 7,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Container(
-                              height: 180,
-                              decoration: const BoxDecoration(
-                                color: Colors.yellow,
-                              ),
-                            ),
-                          );
-                        }),
+                    child: IndexedStack(
+                      index: _tabIndex,
+                      children: [
+                        ListView.builder(
+                            itemCount: fakeTodayTask.length,
+                            itemBuilder: (context, index) {
+                              final backgroundColorRGB =
+                                  fakeTodayTask[index].backgroundColorRGB ??
+                                      Colors.yellow;
+                              final title = fakeTodayTask[index].title ?? "";
+                              final date = fakeTodayTask[index].date ?? "";
+                              final time = fakeTodayTask[index].time ?? "";
+                              final remindAt =
+                                  fakeTodayTask[index].remindAt ?? "";
+                              final timeAndRemindAt = remindAt != ''
+                                  ? time + " (Remind At $remindAt)"
+                                  : time;
+
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Container(
+                                  // height: 180,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: backgroundColorRGB,
+                                    // color: Colors.yellow,
+                                  ),
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 28,
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: ListView.builder(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: fakeTodayTask[index]
+                                                    .tags
+                                                    ?.length,
+                                                itemBuilder: (context, index2) {
+                                                  final _tag =
+                                                      fakeTodayTask[index]
+                                                              .tags?[index2] ??
+                                                          "";
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      // setState(() {
+                                                      //   fakeTodayTask[index]
+                                                      //           .isCompleted =
+                                                      //       !(fakeTodayTask[index]
+                                                      //               .isCompleted ??
+                                                      //           false);
+                                                      // });
+                                                      print('GestureDetector');
+                                                    },
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 8.0),
+                                                      child: Container(
+                                                        // margin: const EdgeInsets.only(
+                                                        //     right: 8),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal: 12),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Colors
+                                                                      .black45,
+                                                                )),
+                                                        child: Center(
+                                                          child: Text(_tag),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: const EdgeInsets.all(3),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.black,
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Icon(
+                                                Icons.edit,
+                                                color: backgroundColorRGB,
+                                                size: 14,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8.0),
+                                        child: Text(
+                                          title,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Icon(Coolicons.calendar),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            date,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          const Icon(Coolicons.clock),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(timeAndRemindAt),
+                                          const Spacer(),
+                                          Container(
+                                            height: 25,
+                                            width: 25,
+                                            decoration: BoxDecoration(
+                                              // borderRadius:
+                                              //     BorderRadius.circular(13),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color: Colors.black,
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
+                                          // Expanded(child: CircleAvatar())
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                        const Center(
+                          child: Text("Upcoming"),
+                        ),
+                        const Center(
+                          child: Text("Task done"),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
