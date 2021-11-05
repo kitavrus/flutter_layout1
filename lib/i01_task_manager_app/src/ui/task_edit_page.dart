@@ -33,6 +33,14 @@ class _TaskEditPageState extends State<TaskEditPage> {
     super.dispose();
   }
 
+  Color taskTypeBackgroundColor(int currentIndex, int static) {
+    return currentIndex == static ? Colors.black : Colors.white;
+  }
+
+  Color taskTypeTextColor(int currentIndex, int static) {
+    return currentIndex == static ? Colors.white : Colors.black;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +122,6 @@ class _TaskEditPageState extends State<TaskEditPage> {
                           if (dateTime != null) {
                             _dateTimeController.text =
                                 DateFormat('d MMMM y').format(dateTime);
-                            // FocusScope.of(context).unfocus();
                             // TODO Так можно снять фокус с поля после выбора даты
                             FocusScope.of(context).requestFocus(FocusNode());
                           }
@@ -148,60 +155,113 @@ class _TaskEditPageState extends State<TaskEditPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(24),
-                          // border: Border.all(color: w)
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Basic',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _taskTypeIndex = 0;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: taskTypeBackgroundColor(_taskTypeIndex, 0),
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Basic',
+                              style: TextStyle(
+                                color: taskTypeTextColor(_taskTypeIndex, 0),
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _taskTypeIndex = 1;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: taskTypeBackgroundColor(_taskTypeIndex, 1),
                             borderRadius: BorderRadius.circular(24),
-                            border: Border.all(color: Colors.black)),
-                        child: const Center(
-                          child: Text(
-                            'Urgent',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Urgent',
+                              style: TextStyle(
+                                color: taskTypeTextColor(_taskTypeIndex, 1),
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _taskTypeIndex = 2;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 25, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: taskTypeBackgroundColor(_taskTypeIndex, 2),
                             borderRadius: BorderRadius.circular(24),
-                            border: Border.all(color: Colors.black)),
-                        child: const Center(
-                          child: Text(
-                            'Important',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Important',
+                              style: TextStyle(
+                                color: taskTypeTextColor(_taskTypeIndex, 2),
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Divider(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 16),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: const Color(0xff4beed1),
+                        borderRadius: BorderRadius.circular(24)),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.file_copy_outlined),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Attache File',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -219,7 +279,7 @@ class _TaskEditPageState extends State<TaskEditPage> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
