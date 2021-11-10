@@ -39,6 +39,15 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
 
   @override
   Widget build(BuildContext context) {
+    const _textFieldDecoration = InputDecoration(
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey),
+      ),
+    );
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -84,14 +93,7 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                       style: const TextStyle(
                         color: Colors.white70,
                       ),
-                      decoration: const InputDecoration(
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                      ),
+                      decoration: _textFieldDecoration,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Заполните имя";
@@ -110,15 +112,7 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                     TextFormField(
                       controller: _cardNumberTextController,
                       style: const TextStyle(color: Colors.white70),
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.all(0),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                        ),
-                      ),
+                      decoration: _textFieldDecoration,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Заполните номер карты";
