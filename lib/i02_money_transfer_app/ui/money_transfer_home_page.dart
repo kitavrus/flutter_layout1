@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout1/i02_money_transfer_app/ui/add_new_card_page.dart';
-import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
 class MoneyTransferHomePage extends StatelessWidget {
@@ -27,7 +26,13 @@ class MoneyTransferHomePage extends StatelessWidget {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        Get.to(const AddNewCardPage());
+                        // Get.to(const AddNewCardPage());
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AddNewCardPage(),
+                          ),
+                        );
                       },
                       child: Column(
                         children: [
