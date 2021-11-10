@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class AddNewCardPage extends StatefulWidget {
@@ -110,6 +111,7 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _cardNumberTextController,
                       style: const TextStyle(color: Colors.white70),
                       decoration: _textFieldDecoration,
