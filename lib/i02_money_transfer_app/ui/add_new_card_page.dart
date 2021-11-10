@@ -53,6 +53,7 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
     );
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
