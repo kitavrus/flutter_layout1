@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_layout1/i02_money_transfer_app/ui/add_new_cart_page.dart';
+import 'package:flutter_layout1/i02_money_transfer_app/ui/add_new_card_page.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -27,7 +27,7 @@ class MoneyTransferHomePage extends StatelessWidget {
                     const Spacer(),
                     GestureDetector(
                       onTap: () {
-                        Get.to(const AddNewCartPage());
+                        Get.to(const AddNewCardPage());
                       },
                       child: Column(
                         children: [
@@ -78,7 +78,7 @@ class MoneyTransferHomePage extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                const CreditCart(),
+                const CreditCard(),
                 const SizedBox(
                   height: 15,
                 ),
@@ -147,14 +147,14 @@ class MoneyTransferHomePage extends StatelessWidget {
                         OperationItem(
                             operationTypeTitle: 'You received a payment',
                             clientName: 'Ilon Maskoff',
-                            sum: '200'),
+                            sum: '200.00'),
                         SizedBox(
                           height: 10,
                         ),
                         OperationItem(
                             operationTypeTitle: 'Requested payment',
                             clientName: 'Maskoff Ilon',
-                            sum: '100'),
+                            sum: '100.00'),
                       ],
                     ),
                     const SizedBox(
@@ -174,14 +174,14 @@ class MoneyTransferHomePage extends StatelessWidget {
                     const OperationItem(
                         operationTypeTitle: 'Requested payment',
                         clientName: 'Ilon Maskoff',
-                        sum: '159'),
+                        sum: '159.00'),
                     const SizedBox(
                       height: 10,
                     ),
                     const OperationItem(
                         operationTypeTitle: 'You received a payment',
                         clientName: 'Maskoff Ilon',
-                        sum: '99'),
+                        sum: '99.00'),
                   ],
                 ),
               ],
@@ -306,8 +306,8 @@ class TransferItem extends StatelessWidget {
   }
 }
 
-class CreditCart extends StatelessWidget {
-  const CreditCart({
+class CreditCard extends StatelessWidget {
+  const CreditCard({
     Key? key,
   }) : super(key: key);
 
