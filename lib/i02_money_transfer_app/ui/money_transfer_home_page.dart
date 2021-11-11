@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout1/i02_money_transfer_app/ui/add_new_card_page.dart';
+import 'package:flutter_layout1/i02_money_transfer_app/ui/confirm_money_transfer_page.dart';
 import 'package:line_icons/line_icons.dart';
 
 class MoneyTransferHomePage extends StatelessWidget {
@@ -212,48 +213,57 @@ class OperationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 48,
-          height: 48,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.asset(
-              'assets/images/girl.jpg',
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ConfirmMoneyTransferPage(),
+          ),
+        );
+      },
+      child: Row(
+        children: [
+          SizedBox(
+            width: 48,
+            height: 48,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.asset(
+                'assets/images/girl.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              operationTypeTitle,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 3,
-            ),
-            Text(
-              clientName,
-              style: const TextStyle(color: Colors.grey),
-            ),
-          ],
-        ),
-        const Spacer(),
-        Text(
-          '\$$sum',
-          style: TextStyle(
-            color: Colors.purple[50],
-            fontWeight: FontWeight.bold,
+          const SizedBox(
+            width: 10,
           ),
-        ),
-      ],
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                operationTypeTitle,
+                style: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 3,
+              ),
+              Text(
+                clientName,
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Text(
+            '\$$sum',
+            style: TextStyle(
+              color: Colors.purple[50],
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
