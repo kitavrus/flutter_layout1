@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout1/i04_airplane_ticket_reservation_app/ui/widgets/destination_box.dart';
 import 'package:flutter_layout1/i04_airplane_ticket_reservation_app/ui/widgets/options.dart';
+import 'package:flutter_layout1/i04_airplane_ticket_reservation_app/ui/widgets/select_way.dart';
 
 class AirplaneTicketReservationHomePage extends StatelessWidget {
   const AirplaneTicketReservationHomePage({Key? key}) : super(key: key);
@@ -24,6 +25,8 @@ class AirplaneTicketReservationHomePage extends StatelessWidget {
                 Options(),
                 SizedBox(height: 22),
                 DestinationBox(),
+                SizedBox(height: 22),
+                SelectWay(),
               ],
             ),
           ),

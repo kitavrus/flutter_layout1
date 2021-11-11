@@ -16,15 +16,21 @@ class DestinationBox extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(width: 10),
-          const IconDestination(),
-          const SizedBox(width: 17),
-          _originAndDestination(),
-          const SizedBox(width: 70),
-          _originAndDestinationIcon(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(width: 10),
+              const IconDestination(),
+              const SizedBox(width: 17),
+              _originAndDestination(),
+              const SizedBox(width: 70),
+              _originAndDestinationIcon(),
+            ],
+          ),
         ],
       ),
     );
