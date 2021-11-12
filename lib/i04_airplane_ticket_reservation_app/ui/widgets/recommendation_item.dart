@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_layout1/i04_airplane_ticket_reservation_app/ui/airplane_ticket_reservarion_detail_page.dart';
+import 'package:flutter_layout1/i04_airplane_ticket_reservation_app/ui/airplane_ticket_reservation_detail_page.dart';
 import 'package:intl/intl.dart';
 
 class RecommendationItem extends StatelessWidget {
@@ -20,7 +20,8 @@ class RecommendationItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const AirplaneTicketReservationDetailPage(),
+            builder: (context) =>
+                AirplaneTicketReservationDetailPage(color: color),
           ),
         );
       },
