@@ -34,7 +34,33 @@ class SelectWayBtn extends StatelessWidget {
             color: color.withOpacity(0.3),
             borderRadius: borderRadius,
           ),
-          child: Text(label), // TODO аналог обернуть с Center
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  color: color,
+                  shape: BoxShape.circle,
+                  //   borderRadius: BorderRadius.circular(14)
+                ),
+                child: Icon(icon, color: Colors.white, size: 18),
+              ),
+              Container(
+                alignment: Alignment.center,
+                width: 90,
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: color,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
+          ), // TODO аналог обернуть с Center
         ),
       ),
     );
