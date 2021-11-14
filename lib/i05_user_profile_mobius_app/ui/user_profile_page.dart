@@ -66,6 +66,8 @@ class ProfileTab extends StatelessWidget {
       child: Container(
         color: const Color(ThemeApp.backgroundColor),
         padding: const EdgeInsets.all(16.0),
+        // width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
@@ -81,6 +83,12 @@ class ProfileTab extends StatelessWidget {
               subTitle: 'Для операций в Сбербанк Онлайн',
             ),
             TariffsAndLimits(),
+            SizedBox(height: 35),
+            TitleSection(
+              title: 'Интересы',
+              subTitle:
+                  'Мы подбираем истории и предложения по темам, которые вам нравятся',
+            ),
           ],
         ),
       ),

@@ -7,6 +7,8 @@ class TariffsAndLimits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TariffAndLimitsItem(
           title: 'Изменить суточный лимит',
@@ -16,15 +18,15 @@ class TariffsAndLimits extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         TariffAndLimitsItem(
-          title: 'Изменить суточный лимит',
-          subtitle: 'На платежи и переводы',
+          title: 'Переводы без комиссии',
+          subtitle: 'Показать остаток в этом месяце',
           pathToImage: 'assets/user_profile/icons/percent_outlined.png',
           onTab: () {},
         ),
         const SizedBox(height: 12),
         TariffAndLimitsItem(
-          title: 'Изменить суточный лимит',
-          subtitle: 'На платежи и переводы',
+          title: 'Информация о тарифах \n и лимитах',
+          subtitle: '',
           pathToImage: 'assets/user_profile/icons/percent_outlined.png',
           onTab: () {},
         ),

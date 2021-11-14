@@ -16,59 +16,73 @@ class TariffAndLimitsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      // mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Image.asset(pathToImage, width: 36, height: 40),
-        // const SizedBox(width: 12),
-        Container(
-          color: Colors.red,
-          height: 1,
-          width: 100,
-        ),
-        // Column(
-        //   // mainAxisAlignment: MainAxisAlignment.start,
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   children: [
-        //     // Text(
-        //     //   title,
-        //     //   style: const TextStyle(
-        //     //     fontSize: 16,
-        //     //     fontWeight: FontWeight.w500,
-        //     //     color: Colors.black,
-        //     //   ),
-        //     // ),
-        //     // Text(
-        //     //   subtitle,
-        //     //   style: TextStyle(
-        //     //     fontSize: 16,
-        //     //     fontWeight: FontWeight.w500,
-        //     //     color: Colors.black.withOpacity(0.55),
-        //     //   ),
-        //     // ),
-        //     Container(
-        //       color: Colors.black.withOpacity(0.55),
-        //       height: 10,
-        //     )
-        //   ],
-        // ),
-        // Spacer(),
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Icon(
-        //       Icons.arrow_forward_ios_sharp,
-        //       color: Colors.black.withOpacity(0.30),
-        //       size: 20,
-        //     ),
-        //     Divider(
-        //       color: Colors.black.withOpacity(0.55),
-        //
-        //     ),
-        //   ],
-        // ),
-      ],
+    return SizedBox(
+      height: 55,
+      // width: double.infinity,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            pathToImage,
+            width: 36,
+            height: 40,
+            // fit: BoxFit.fill,
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(left: 12),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 1.5, color: Colors.grey),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                  if (subtitle.isNotEmpty) ...[
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black.withOpacity(0.55),
+                      ),
+                    )
+                  ]
+                ],
+              ),
+            ),
+          ),
+          // Spacer(),
+          Container(
+            padding: const EdgeInsets.only(bottom: 25),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(width: 1.5, color: Colors.grey),
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  color: Colors.black.withOpacity(0.30),
+                  size: 20,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
