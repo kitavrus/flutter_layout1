@@ -1,6 +1,18 @@
-https://www.figma.com/file/3hDOu4hwYfBeY879pApQzm/Mobius-2020?node-id=3%3A68
+import 'package:flutter/material.dart';
 
-Column(
+class TitleSection extends StatelessWidget {
+  final String title;
+  final String? subTitle;
+
+  const TitleSection({
+    required this.title,
+    this.subTitle,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -23,3 +35,5 @@ Column(
         ],
       ],
     );
+  }
+}
