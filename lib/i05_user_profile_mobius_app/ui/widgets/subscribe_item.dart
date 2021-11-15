@@ -17,7 +17,7 @@ class SubscribeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.all(8),
       child: Container(
         width: 216,
         height: 130,
@@ -25,6 +25,14 @@ class SubscribeItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 2,
+              offset: const Offset(0, 2), // changes position of shadow
+            ),
+          ],
         ),
         child: Column(
           children: [

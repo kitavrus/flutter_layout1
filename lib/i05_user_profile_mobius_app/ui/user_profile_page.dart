@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout1/i05_user_profile_mobius_app/theme/theme_app.dart';
+import 'package:flutter_layout1/i05_user_profile_mobius_app/ui/widgets/interest.dart';
 import 'package:flutter_layout1/i05_user_profile_mobius_app/ui/widgets/subscribe_list.dart';
 import 'package:flutter_layout1/i05_user_profile_mobius_app/ui/widgets/tariffs_and_limits.dart';
 import 'package:flutter_layout1/i05_user_profile_mobius_app/ui/widgets/title_section.dart';
@@ -64,7 +65,7 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        color: const Color(ThemeApp.backgroundColor),
+        color: const Color(ThemeApp.backgroundColor).withOpacity(0.2),
         padding: const EdgeInsets.all(16.0),
         // width: MediaQuery.of(context).size.width,
         // height: MediaQuery.of(context).size.height,
@@ -89,6 +90,8 @@ class ProfileTab extends StatelessWidget {
               subTitle:
                   'Мы подбираем истории и предложения по темам, которые вам нравятся',
             ),
+            SizedBox(height: 10),
+            Interest(),
           ],
         ),
       ),

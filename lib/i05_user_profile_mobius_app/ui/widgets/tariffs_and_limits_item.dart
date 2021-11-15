@@ -31,9 +31,12 @@ class TariffAndLimitsItem extends StatelessWidget {
           Expanded(
             child: Container(
               margin: const EdgeInsets.only(left: 12),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 1.5, color: Colors.grey),
+                  bottom: BorderSide(
+                    width: 1.5,
+                    color: Colors.black.withOpacity(0.2),
+                  ),
                 ),
               ),
               child: Column(
@@ -65,9 +68,12 @@ class TariffAndLimitsItem extends StatelessWidget {
           // Spacer(),
           Container(
             padding: const EdgeInsets.only(bottom: 25),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               border: Border(
-                bottom: BorderSide(width: 1.5, color: Colors.grey),
+                bottom: BorderSide(
+                  width: 1.5,
+                  color: Colors.black.withOpacity(0.2),
+                ),
               ),
             ),
             child: Column(

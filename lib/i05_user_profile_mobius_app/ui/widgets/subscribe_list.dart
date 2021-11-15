@@ -25,7 +25,7 @@ class SubscribeList extends StatelessWidget {
             description: 'Автопродление 21 августа',
             costPerMonth: '99 ₽ в месяц',
             titleIcon: SvgPicture.asset(
-              'assets/user_profile/icons/percent.svg',
+              'assets/icons/user_profile/percent.svg',
               height: 35,
               width: 35,
             ),
@@ -35,7 +35,7 @@ class SubscribeList extends StatelessWidget {
             description: 'Платёж 9 июля',
             costPerMonth: '199 ₽ в месяц',
             titleIcon: Image.asset(
-              'assets/user_profile/icons/flag_pic.png',
+              'assets/icons/user_profile/flag_pic.png',
               height: 26,
               width: 26,
             ),

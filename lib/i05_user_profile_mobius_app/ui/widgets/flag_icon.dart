@@ -11,7 +11,7 @@ class FlagIcon extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Image.asset(
-          'assets/user_profile/icons/flag_pic.png',
+          'assets/icons/user_profile/flag_pic.png',
           height: 24,
           width: 24,
         ),
