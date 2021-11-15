@@ -7,7 +7,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 
 dependencies:
@@ -21,6 +21,9 @@ dependencies:
   line_icons: any
   # Draw SVG (and some Android VectorDrawable (XML)) files on a Flutter Widget.
   flutter_svg: ^0.23.0+1
+  fl_chart: any
+  equatable: ^2.0.3
+  flutter_bloc: any
 
 dev_dependencies:
   flutter_test:
