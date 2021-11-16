@@ -19,6 +19,7 @@ class SubscribeItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Container(
+        // TODO change to Card?
         width: 216,
         height: 130,
         padding: const EdgeInsets.all(16.0),
