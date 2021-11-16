@@ -58,11 +58,25 @@ class CardItemMy extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Image.network(
-                _boxiz.img ?? '',
-                height: MediaQuery.of(context).size.height * 0.3,
-                fit: BoxFit.fill,
-                alignment: Alignment.topCenter,
+              Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    topLeft: Radius.circular(16),
+                  ),
+                  image: DecorationImage(
+                    image: NetworkImage(_boxiz.img ?? ''),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                // child: Image.network(
+                //   _boxiz.img ?? '',
+                //   // height: MediaQuery.of(context).size.height * 0.3,
+                //   // fit: BoxFit.fill,
+                //   // alignment: Alignment.topCenter,
+                // ),
               ),
               // Expanded(
               //   flex: 5,
