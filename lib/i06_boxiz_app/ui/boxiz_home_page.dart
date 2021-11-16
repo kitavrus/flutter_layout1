@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout1/i06_boxiz_app/model/boxiz.dart';
+import 'package:flutter_layout1/i06_boxiz_app/theme/boxiz_theme.dart';
 
 class BoxizHomePage extends StatelessWidget {
   const BoxizHomePage({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class BoxizHomePage extends StatelessWidget {
                   itemCount: boxizItems.length,
                   itemBuilder: (context, index) {
                     Boxiz _boxiz = boxizItems[index];
-                    return CardItemMy(boxiz: _boxiz);
+                    return CardItem(boxiz: _boxiz);
                   }),
               flex: 20,
             ),
@@ -42,15 +43,15 @@ class CardItemMy extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 380,
+      child: Card(
+        // height: 380,
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.blue,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(16),
-              topLeft: Radius.circular(16),
-            ),
+            // borderRadius: BorderRadius.only(
+            //   topRight: Radius.circular(16),
+            //   topLeft: Radius.circular(16),
+            // ),
             // image: DecorationImage(
             //   image: NetworkImage(_boxiz.img ?? ''),
             //   fit: BoxFit.contain,
@@ -137,14 +138,53 @@ class CardItem extends StatelessWidget {
             ),
             Expanded(
               flex: 4,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text('data'),
-                    ],
-                  )
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "${_boxiz.prize}",
+                          style:
+                              TextStyle(color: Colors.white.withOpacity(0.6)),
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            "${_boxiz.type}",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "${_boxiz.title}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "${_boxiz.datetime}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -170,12 +210,30 @@ class TopAppBar extends StatelessWidget {
               const CircleAvatar(
                 radius: 12,
               ),
-              Icon(Icons.comment_bank_outlined),
-              Text('128'),
-              Icon(Icons.vpn_key),
-              Text('128'),
-              Icon(Icons.shield),
-              Text('3'),
+              Icon(
+                Icons.comment_bank_outlined,
+                color: Colors.orange,
+              ),
+              Text(
+                '128',
+                style: TextStyle(color: Colors.white),
+              ),
+              Icon(
+                Icons.vpn_key,
+                color: Colors.grey,
+              ),
+              Text(
+                '0',
+                style: TextStyle(color: Colors.white),
+              ),
+              Icon(
+                Icons.shield,
+                color: BoxizTheme.accentColor,
+              ),
+              Text(
+                '3',
+                style: TextStyle(color: Colors.white),
+              ),
               Badge(
                 child: Icon(
                   Icons.notifications,
@@ -203,21 +261,35 @@ class BottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  onPressed: () {}, icon: Icon(Icons.home), iconSize: 28),
+                onPressed: () {},
+                icon: Icon(Icons.home),
+                iconSize: 28,
+                color: Colors.white,
+              ),
               IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.radio_button_checked),
-                  iconSize: 28),
+                onPressed: () {},
+                icon: Icon(Icons.radio_button_checked),
+                iconSize: 28,
+                color: Colors.white,
+              ),
               IconButton(
-                  onPressed: () {}, icon: Icon(Icons.shield), iconSize: 28),
+                onPressed: () {},
+                icon: Icon(Icons.shield),
+                iconSize: 28,
+                color: Colors.white,
+              ),
               IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.waterfall_chart),
-                  iconSize: 28),
+                onPressed: () {},
+                icon: Icon(Icons.waterfall_chart),
+                iconSize: 28,
+                color: Colors.white,
+              ),
               IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.confirmation_num_outlined),
-                  iconSize: 28),
+                onPressed: () {},
+                icon: Icon(Icons.confirmation_num_outlined),
+                iconSize: 28,
+                color: Colors.white,
+              ),
             ],
           ),
         ),
