@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_layout1/i03_bank_wallet_app/bank_wallet_app.dart';
 // import 'package:flutter_layout1/i06_boxiz_app/boxiz_app.dart';
 // import 'package:flutter_layout1/i04_airplane_ticket_reservation_app/airplane_ticket_reservation_app.dart';
-// import 'package:flutter_layout1/i05_user_profile_mobius_app/user_profile_mobius_app.dart';
-import 'i07_movies_experiment_app/movies_experiment_app.dart';
+ import 'package:flutter_layout1/i05_user_profile_mobius_app/user_profile_mobius_app.dart';
+//import 'i07_movies_experiment_app/movies_experiment_app.dart';
 
 void main() {
-  runApp(const MoviesExperimentApp());
+  runApp(const UserProfileMobiusApp());
 }
